@@ -178,7 +178,7 @@ public class GuessAB {
                     .show();
         }
     }
-    Boolean isGuessResult(String result){
+    Boolean isGuessResult(String result){//check the first letter is 0-9
         int tempResult = Integer.valueOf(result.charAt(0));
 
         if(tempResult>=48 &&tempResult<=57){//mapping to ASCII 0=48 9=57
