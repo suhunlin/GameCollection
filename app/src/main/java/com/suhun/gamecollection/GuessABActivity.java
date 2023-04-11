@@ -17,12 +17,18 @@ public class GuessABActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityGuessAbactivityBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        //guess button
+        binding.guess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                guessAB.showGuessAlertDialog(GuessABActivity.this, getResources(), binding);
+            }
+        });
         //reset button
         binding.reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 guessAB.showResetAlertDialog(GuessABActivity.this, getResources(), binding);
-
             }
         });
         //setting button

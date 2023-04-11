@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
@@ -19,12 +20,14 @@ public class GuessAB {
     public String tag = GuessAB.class.getSimpleName();
     private String answer;
     private int guessCounter;
+    private int guessLimit;
     private int answerLen;
     private int tempWhich;
 
     public GuessAB(){
         super();
         this.answerLen = 4;
+        this.guessLimit = 10;
         initGame();
     }
 
@@ -55,6 +58,33 @@ public class GuessAB {
         return stringBuffer.toString();
     }
 
+    public String checkResult(Context context, String userInput){
+        String result = "Type length error!!!";
+        if(userInput==null){
+            Toast.makeText(context, "Input digit null, need "+answerLen+"digits", Toast.LENGTH_LONG).show();
+        }else if(userInput.length()>answerLen){
+           Toast.makeText(context, "Input digit to long only need "+answerLen+"digits", Toast.LENGTH_LONG).show();
+        }else if(userInput.length()<answerLen){
+            Toast.makeText(context, "Input digit to short only need "+answerLen+"digits", Toast.LENGTH_LONG).show();
+        }else{
+            guessCounter++;
+            result = check(userInput);
+        }
+        return result;
+    }
+
+    private String check(String userInput){
+        int a=0, b=0;
+        for(int i=0;i<answer.length();i++){
+            if(answer.charAt(i)==userInput.charAt(i)){
+                a++;
+            }else if(answer.contains(""+userInput.charAt(i))){
+                b++;
+            }
+        }
+        return String.format("%dA%dB",a,b).toString();
+    }
+
     public void showSettingAlertDialog(Context context, Resources resources){
         String[] items = {"2", "3", "4", "5"};
         int checkedItem=0;
@@ -83,6 +113,7 @@ public class GuessAB {
                     }
                 })
                 .setNeutralButton("Cancel", null)
+                .setCancelable(false)
                 .create()
                 .show();
     }
@@ -100,7 +131,60 @@ public class GuessAB {
                     }
                 })
                 .setNeutralButton("Cancel", null)
+                .setCancelable(false)
                 .create()
                 .show();
+    }
+
+    public void showGuessAlertDialog(Context context, Resources resources, ActivityGuessAbactivityBinding binding){
+        String userInput = binding.userInput.getText().toString();
+        String result = checkResult(context, userInput);
+        String message ;
+        DialogInterface.OnClickListener positiveListener=null;
+        if(isGuessResult(result)){//not null or input too long or input too short
+            //not over guess limit
+            if(guessCounter<guessLimit){
+                if(result.equals(answerLen+"A0B")){//guess success
+                    message = "You got it!!!Reset game?";
+                    positiveListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            initGame();
+                            binding.log.setText("");
+                        }
+                    };
+                }else{//guess fail
+                    message = userInput + ":" + result + "\t" + guessCounter + "times \n";
+                    binding.log.append(message);
+                }
+            }else{//over guess limit
+                message = "Over game limit " + guessLimit + "Reset game";
+                positiveListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        initGame();
+                        binding.log.setText("");
+                    }
+                };
+            }
+            binding.userInput.setText("");
+            new AlertDialog.Builder(context)
+                    .setTitle("Guess Result")
+                    .setMessage(message)
+                    .setPositiveButton("Ok", positiveListener)
+                    .setNeutralButton("Cancel", null)
+                    .setCancelable(false)
+                    .create()
+                    .show();
+        }
+    }
+    Boolean isGuessResult(String result){
+        int tempResult = Integer.valueOf(result.charAt(0));
+
+        if(tempResult>=48 &&tempResult<=57){//mapping to ASCII 0=48 9=57
+            return true;
+        }else{
+            return false;
+        }
     }
 }
