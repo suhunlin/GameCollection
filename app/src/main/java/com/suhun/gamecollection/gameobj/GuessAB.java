@@ -62,6 +62,7 @@ public class GuessAB {
         for(int i=0;i<items.length;i++){
             if(items[i].equals(String.valueOf(answerLen))){
                 checkedItem = i;
+                tempWhich = i;
             }
         }
         new AlertDialog.Builder(context)
