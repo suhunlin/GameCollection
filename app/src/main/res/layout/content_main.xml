@@ -1,6 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <TextView
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Menu"
+        android:textSize="26sp"
+        android:textStyle="bold|italic"
+        android:background="#f74"
+        android:paddingVertical="4dp"
+        android:gravity="center_horizontal"
+        />
+    <RelativeLayout
+        android:id="@+id/topLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/menu"
+        >
+        <Button
+            android:id="@+id/lottery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lottery"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            android:layout_margin="4dp"
+            />
+        <Button
+            android:id="@+id/guessAB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GuessAb"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            android:layout_margin="4dp"
+            android:layout_below="@id/lottery"
+            />
+        <Button
+            android:id="@+id/guessNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GuessNumber"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            android:layout_margin="4dp"
+            android:layout_below="@id/guessAB"
+            />
+    </RelativeLayout>
+    <Button
+        android:id="@+id/exit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Exit"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:layout_margin="4dp"
+        />
+
+
+</RelativeLayout>
