@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.suhun.gamecollection.databinding.ActivityGuessAbactivityBinding;
+import com.suhun.gamecollection.gameobj.GuessAB;
 
 public class GuessABActivity extends AppCompatActivity {
     private ActivityGuessAbactivityBinding binding;
+    private GuessAB guessAB = new GuessAB();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
