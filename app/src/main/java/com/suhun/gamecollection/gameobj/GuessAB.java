@@ -7,6 +7,8 @@ import android.util.Log;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.suhun.gamecollection.databinding.ActivityGuessAbactivityBinding;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -77,6 +79,23 @@ public class GuessAB {
                         answerLen = Integer.valueOf(items[tempWhich]);
                         Log.d(tag, "Reset answerLen " + answerLen);
                         initGame();
+                    }
+                })
+                .setNeutralButton("Cancel", null)
+                .create()
+                .show();
+    }
+
+    public void showResetAlertDialog(Context context, Resources resources, ActivityGuessAbactivityBinding binding){
+        new AlertDialog.Builder(context)
+                .setTitle("Reset Game")
+                .setMessage("Are you sure?")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        initGame();
+                        binding.log.setText("");
+                        binding.userInput.setText("");
                     }
                 })
                 .setNeutralButton("Cancel", null)
