@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         binding.contentLayout.guessAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GuessABActivity.class);
+                Intent intent = new Intent(MainActivity.this, WelcomeGuessABMainActivity.class);
                 goStartCallbackActivity.launch(intent);
             }
         });
