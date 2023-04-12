@@ -48,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //lottery button
+        binding.contentLayout.lottery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LotteryActivity.class);
+                goStartCallbackActivity.launch(intent);
+            }
+        });
         //guessAB button
         binding.contentLayout.guessAB.setOnClickListener(new View.OnClickListener() {
             @Override

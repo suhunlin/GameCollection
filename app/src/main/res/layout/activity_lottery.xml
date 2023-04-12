@@ -43,6 +43,7 @@
             android:textStyle="normal|italic"
             android:background="@drawable/number_bg"
             android:layout_margin="4dp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/num1"
@@ -53,6 +54,7 @@
             android:textStyle="normal|italic"
             android:background="@drawable/number_bg"
             android:layout_margin="4dp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/num2"
@@ -63,6 +65,7 @@
             android:textStyle="normal|italic"
             android:background="@drawable/number_bg"
             android:layout_margin="4dp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/num3"
@@ -73,6 +76,7 @@
             android:textStyle="normal|italic"
             android:background="@drawable/number_bg"
             android:layout_margin="4dp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/num4"
@@ -83,6 +87,7 @@
             android:textStyle="normal|italic"
             android:background="@drawable/number_bg"
             android:layout_margin="4dp"
+            android:gravity="center"
             />
         <TextView
             android:id="@+id/num5"
@@ -93,6 +98,7 @@
             android:textStyle="normal|italic"
             android:background="@drawable/number_bg"
             android:layout_margin="4dp"
+            android:gravity="center"
             />
     </LinearLayout>
     <LinearLayout
