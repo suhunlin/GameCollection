@@ -64,6 +64,14 @@ public class MainActivity extends AppCompatActivity {
                 goStartCallbackActivity.launch(intent);
             }
         });
+        //stop watch button
+        binding.contentLayout.stopWatch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, StopWatchActivity.class);
+                goStartCallbackActivity.launch(intent);
+            }
+        });
         //exit button
         binding.contentLayout.exit.setOnClickListener(new View.OnClickListener() {
             @Override
