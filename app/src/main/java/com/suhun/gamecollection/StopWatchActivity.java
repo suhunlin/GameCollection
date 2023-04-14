@@ -13,13 +13,12 @@ public class StopWatchActivity extends AppCompatActivity {
     private ActivityStopWatchBinding binding;
     private StopWatch stopWatch;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityStopWatchBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        stopWatch = new StopWatch(binding);
+        stopWatch = new StopWatch(this, binding);
     }
 
     public void leftFun(View view){
