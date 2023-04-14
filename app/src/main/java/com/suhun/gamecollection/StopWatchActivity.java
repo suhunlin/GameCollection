@@ -3,6 +3,7 @@ package com.suhun.gamecollection;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.suhun.gamecollection.databinding.ActivityStopWatchBinding;
 
@@ -15,5 +16,17 @@ public class StopWatchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityStopWatchBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+    }
+
+    public void leftFun(View view){
+
+    }
+
+    public void rightFun(View view){
+
+    }
+
+    public void exitFun(View view){
+        finish();
     }
 }
