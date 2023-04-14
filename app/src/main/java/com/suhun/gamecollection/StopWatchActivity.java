@@ -11,7 +11,7 @@ import com.suhun.gamecollection.gameobj.StopWatch;
 public class StopWatchActivity extends AppCompatActivity {
     String tag = StopWatchActivity.class.getSimpleName();
     private ActivityStopWatchBinding binding;
-    private StopWatch stopWatch = new StopWatch();
+    private StopWatch stopWatch;
 
 
     @Override
@@ -19,6 +19,7 @@ public class StopWatchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityStopWatchBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        stopWatch = new StopWatch(binding);
     }
 
     public void leftFun(View view){
@@ -26,7 +27,7 @@ public class StopWatchActivity extends AppCompatActivity {
     }
 
     public void rightFun(View view){
-        stopWatch.showRight(binding);
+        stopWatch.showRight();
     }
 
 
