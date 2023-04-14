@@ -29,6 +29,7 @@
             />
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/functionButtonLine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -58,6 +59,7 @@
             />
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/bottomLine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -74,6 +76,11 @@
             android:onClick="exitFun"
             />
     </LinearLayout>
-
-
+    <ListView
+        android:id="@+id/lapData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/functionButtonLine"
+        android:layout_above="@id/bottomLine"
+        />
 </RelativeLayout>
