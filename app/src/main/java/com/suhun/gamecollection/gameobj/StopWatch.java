@@ -65,6 +65,7 @@ public class StopWatch {
     private void doStop(){
         if(myTask != null){
             myTask.cancel();
+            counter = 0;
             binding.clock.setText("00:00:00.0");
         }
     }
