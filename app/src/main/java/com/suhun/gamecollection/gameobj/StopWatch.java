@@ -1,6 +1,10 @@
 package com.suhun.gamecollection.gameobj;
 
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import com.suhun.gamecollection.databinding.ActivityStopWatchBinding;
 
@@ -13,14 +17,23 @@ public class StopWatch {
     private boolean isStart;
     private Timer timer = new Timer();
     private MyTask myTask;
-    private int counter = 0;
+    public int counter = 0;
+    private UiHandler uiHandler = new UiHandler();
 
     private class MyTask extends TimerTask{
         @Override
         public void run() {
             counter++;
             Log.d(tag, "Counter:"+counter);
+            uiHandler.sendEmptyMessage(0);
+        }
+    }
 
+    private class UiHandler extends Handler{
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            binding.clock.setText(String.valueOf(counter));
         }
     }
 
