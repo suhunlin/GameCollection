@@ -22,7 +22,7 @@ public class StopWatchActivity extends AppCompatActivity {
     }
 
     public void leftFun(View view){
-
+        stopWatch.showLeft();
     }
 
     public void rightFun(View view){
@@ -31,6 +31,7 @@ public class StopWatchActivity extends AppCompatActivity {
 
 
     public void exitFun(View view){
+        stopWatch.resetAll();
         finish();
     }
 }

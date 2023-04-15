@@ -3,6 +3,7 @@ package com.suhun.gamecollection.gameobj;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.renderscript.ScriptGroup;
 import android.util.Log;
 import android.widget.SimpleAdapter;
 
@@ -44,7 +45,7 @@ public class StopWatch {
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            binding.clock.setText(String.valueOf(counter));
+            binding.clock.setText(counterToClock(counter));
         }
     }
 
@@ -52,7 +53,7 @@ public class StopWatch {
         this.binding = binding;
         this.context = context;
         initListView();
-        testInitListView(); //test method to test ListView
+        //testInitListView(); //test method to test ListView
     }
 
     public void initListView(){
@@ -66,8 +67,33 @@ public class StopWatch {
         data.add(0,hashData);
         simpleAdapter.notifyDataSetChanged();
     }
-    public void showLeft(){
 
+    public String counterToClock(int counter){
+        int ms = counter % 100;
+        int ts = counter /100;
+        int hh = ts /(60*60);
+        int mm = (ts - hh*60*60) / 60;
+        int ss = ts % 60;
+        return String.format("%d:%d:%d.%d", hh, mm, ss, ms);
+    }
+    public void showLeft(){
+        if(isStart){//do lap
+            doLap();
+        }else{//do reset
+            doReset();
+        }
+    }
+
+    private void doLap(){
+        HashMap<String, String> listViewItemData = new HashMap<>();
+        listViewItemData.put(from[0], binding.clock.getText().toString());
+        data.add(0,listViewItemData);
+        simpleAdapter.notifyDataSetChanged();
+    }
+
+    private void doReset(){
+        data.clear();
+        simpleAdapter.notifyDataSetChanged();
     }
 
     public void showRight(){
@@ -88,6 +114,14 @@ public class StopWatch {
     }
 
     private void doStop(){
+        if(myTask != null){
+            myTask.cancel();
+            counter = 0;
+            binding.clock.setText("00:00:00.0");
+        }
+    }
+
+    public void resetAll(){
         if(myTask != null){
             myTask.cancel();
             counter = 0;
